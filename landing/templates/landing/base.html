@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
-    <title>{% block title %}{% endblock %}Call Fusion</title>
+    <title>{% block title %}{% endblock %}Joy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- Styles -->
@@ -92,29 +92,37 @@
             animation: lightBlueShift 7s infinite;
         }
     </style>
-    <link rel="icon" href="https://storage.googleapis.com/lander-static-assets/favicon.ico" type="image/x-icon">
+    <link rel="icon"
+        href="https://cdn.discordapp.com/attachments/1065084976904818689/1169080538338971659/Screenshot_2023-10-31_210800-removebg-preview.png?ex=65541a18&is=6541a518&hm=62e2fad5eaba37527cbf2f0b00dd5931892698381974a4992f578916e23141be&"
+        type="image/x-icon">
 </head>
 
 
 <body class="text-gray-800 min-h-screen flex flex-col m-0 p-0">
     <!-- Navigation -->
-    <nav class="py-4 px-4 lg:px-6 bg-white border-b border-gray-200 relative">
-        <div class="flex justify-between items-center">
+    <nav class="py-2 md:py-4 px-2 md:px-4 lg:px-6 bg-white border-b border-gray-200 relative">
+        <div class="flex flex-wrap justify-between items-center">
             <!-- Left side with the main logo -->
-            <a href="/" class="flex items-center">
+            <a href="/" class="flex items-center mb-2 md:mb-0">
                 {% load static %}
-                <img src="https://cdn.discordapp.com/attachments/1065084976904818689/1169057621790171216/Screenshot_2023-10-31_193719.png?ex=655404c1&is=65418fc1&hm=1a695a8c14525a20ae560c7f2705cec48497731ec094f318852c499be325aee2&"
-                    alt="Staffing Logo" class="w-55 h-10 mr-4">
+                <img src="https://cdn.discordapp.com/attachments/1065084976904818689/1169057621790171216/Screenshot_2023-10-31_193719.png?ex=655404c1&is=65418fc1&hm=1a695a8c14525a20ae560c7f2705cec48497731ec094f318852c499be325aee2"
+                    alt="Staffing Logo" class="w-40 md:w-55 h-7 md:h-10 mr-2 md:mr-4">
             </a>
-    
+
             <!-- Right side with the agent powered text and logo -->
             <div class="flex items-center">
-                <span class="mr-4 text-gray-700">Agent powered by Call Fusion</span>
+                <span class="hidden md:block mr-4 text-gray-700">Agent powered by Call Fusion</span>
                 <img src="https://storage.googleapis.com/lander-static-assets/Call_Fusion_Logo.png"
-                    alt="Call Fusion Logo" class="w-8 h-8 mr-4">
+                    alt="Call Fusion Logo" class="w-6 md:w-8 h-6 md:h-8 mr-2 md:mr-4">
             </div>
         </div>
     </nav>
+
+    <!-- Padding for mobile and main content -->
+    <div class="p-2 md:p-4 lg:p-0 flex-grow bg-white">
+        {% block content %}
+        {% endblock %}
+    </div>
 
 
     <!-- Padding for mobile and main content -->
@@ -128,7 +136,7 @@
     <footer class="py-8 bg-white mt-auto border-t border-gray-200 px-4 lg:px-0">
         <div class="container mx-auto px-4">
 
-            
+
 
 
             <!-- Copyright -->
