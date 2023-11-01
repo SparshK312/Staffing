@@ -7,13 +7,23 @@
     <h1 class="text-3xl font-bold text-white mb-4">Calling...</h1>
     <p class="text-lg text-gray-400 mb-6">We're calling the number: {{ phone_number }}</p>
 
-    <a href="{% url 'landing:index' %}" 
-       class="block w-full text-center py-3 px-6 mb-4 text-lg font-semibold text-white bg-red-600 hover:bg-red-700 transition duration-300 transform hover:scale-105 focus:ring-4 focus:ring-red-300 rounded-xl shadow-lg">
-       Change Number
+    <a href="{% url 'landing:index' %}"
+        class="block w-full text-center py-3 px-6 mb-4 text-lg font-semibold text-white bg-red-600 hover:bg-red-700 transition duration-300 transform hover:scale-105 focus:ring-4 focus:ring-red-300 rounded-xl shadow-lg">
+        Change Number
     </a>
 
-    <button class="w-full py-3 px-6 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:ring-4 focus:ring-blue-300 rounded-xl shadow-lg">
-        Try Again
-    </button>
+    <form method="post" action="{% url 'landing:try_ai_agent_step2' %}">
+        {% csrf_token %}
+        <input type="hidden" name="try_again" value="1">
+        <button type="submit"
+            class="w-full py-3 px-6 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:ring-4 focus:ring-blue-300 rounded-xl shadow-lg">
+            Try Again
+        </button>
+    </form>
+
+
+    {% if trying_again %}
+    <p class="text-lg text-gray-400 mt-4">Trying again at {{ current_time }}</p>
+    {% endif %}
 </div>
 {% endblock %}
