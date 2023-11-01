@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "callfusion.io",
     "www.callfusion.io",
+    "recruiterai.activatestaff.com",
 ]
 
 STATIC_URL = "/static/"
