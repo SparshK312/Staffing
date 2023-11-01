@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <title>{% block title %}{% endblock %}Call Fusion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Styles -->
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+            background-color: #2a2a2a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #555;
+            border-radius: 5px;
+            background-clip: padding-box;
+            border: 2px solid transparent;
+        }
+
+        ::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        ::-webkit-scrollbar-thumb:hover,
+        ::-webkit-scrollbar-thumb:active {
+            background-color: #888;
+        }
+
+        body {
+            scrollbar-width: thin;
+            scrollbar-color: #d1d1d1 #f2f2f2;
+            background-color: #ffffff;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .dynamic-gradient {
+            background-image: linear-gradient(270deg, #FFF5F7, #FCA5D2, #F9A8D4);
+            background-size: 200% 200%;
+            animation: gradientShift 7s infinite;
+        }
+
+        .pink-button {
+            background-color: #FCA5D2;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .pink-button:hover {
+            background-color: #F9A8D4;
+        }
+
+
+        @keyframes lightBlueShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .light-blue-gradient {
+            background-image: linear-gradient(270deg, #3B82F6, #1E3A8A, #7B21A8);
+            background-size: 200% 200%;
+            animation: lightBlueShift 7s infinite;
+        }
+    </style>
+    <link rel="icon" href="https://storage.googleapis.com/lander-static-assets/favicon.ico" type="image/x-icon">
+</head>
+
+
+<body class="text-gray-800 min-h-screen flex flex-col m-0 p-0">
+    <!-- Navigation -->
+    <nav class="py-4 px-4 lg:px-6 bg-white border-b border-gray-200 relative">
+        <div class="flex justify-between items-center">
+            <!-- Left side with the main logo -->
+            <a href="/" class="flex items-center">
+                {% load static %}
+                <img src="https://cdn.discordapp.com/attachments/1065084976904818689/1169057621790171216/Screenshot_2023-10-31_193719.png?ex=655404c1&is=65418fc1&hm=1a695a8c14525a20ae560c7f2705cec48497731ec094f318852c499be325aee2&"
+                    alt="Staffing Logo" class="w-55 h-10 mr-4">
+            </a>
+    
+            <!-- Right side with the agent powered text and logo -->
+            <div class="flex items-center">
+                <span class="mr-4 text-gray-700">Agent powered by Call Fusion</span>
+                <img src="https://storage.googleapis.com/lander-static-assets/Call_Fusion_Logo.png"
+                    alt="Call Fusion Logo" class="w-8 h-8 mr-4">
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Padding for mobile and main content -->
+    <div class="p-4 lg:p-0 flex-grow bg-white">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="py-8 bg-white mt-auto border-t border-gray-200 px-4 lg:px-0">
+        <div class="container mx-auto px-4">
+
+            
+
+
+            <!-- Copyright -->
+            <div class="text-center text-gray-500">
+                <p>© 2023 Joy. All rights reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+
+
+    <!-- AOS JS -->
+    <!-- ... (JS scripts) ... -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+
+    <script>
+        document.querySelector('a[href="#phone-section"]').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector('#phone-section').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+
+</html>

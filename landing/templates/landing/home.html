@@ -1,0 +1,58 @@
+{% extends 'landing/base.html' %}
+
+{% block content %}
+
+<div class="bg-pink-200 h-1"></div>
+<!-- AI Agent Section -->
+<section class="py-8 lg:py-32 bg-white relative px-4 lg:px-0">
+    <div class="container mx-auto px-4 text-center relative z-10">
+        <div class="flex flex-col justify-center items-center" data-aos="zoom-in">
+
+            <!-- Title --> 
+            <h2
+                class="text-4xl lg:text-5xl font-extrabold mb-4 lg:mb-6 leading-10 lg:leading-normal bg-clip-text text-black">
+                Have our AI Agent Call You
+            </h2>
+
+            <!-- Subtitle --> 
+            <p class="text-base lg:text-lg text-black mb-16 max-w-lg mx-auto">
+                Experience our advanced agent's capabilities firsthand. Don't believe us? Just enter your phone number
+                below and get started for absolutely free without any hassle.
+            </p>
+
+            <!-- Phone Number Form -->
+            <form method="post" action="{% url 'landing:index' %}"
+                class="w-full max-w-lg mx-auto bg-pink-100 p-6 rounded-md shadow-xl">
+                {% csrf_token %}
+                <div class="mb-6 relative rounded-md">
+                    <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                        <span class="text-pink-400 text-xl leading-5">
+                            +1
+                        </span>
+                    </div>
+                    <input
+                        class="form-input block w-full py-3 px-5 pl-20 text-xl leading-6 rounded-md bg-transparent text-black border border-pink-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-400 transition duration-200 shadow-inner"
+                        type="text" id="phone_number" name="phone_number" placeholder="123-456-7890"
+                        pattern="^\d{3}-\d{3}-\d{4}$"
+                        title="Please enter a valid phone number in the format 123-456-7890" required>
+                </div>
+                <button type="submit"
+                    class="w-full py-4 px-10 text-xl font-semibold bg-pink-400 text-white rounded-xl hover:bg-pink-500 transition-transform duration-300 shadow-md transform hover:scale-105 border border-pink-400 hover:border-pink-500">Call
+                    Me Now
+                </button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('phone_number').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, ''); // remove all non-digits
+            if (value.length > 3 && value.length <= 6)
+                value = `${value.slice(0, 3)}-${value.slice(3)}`;
+            else if (value.length > 6)
+                value = `${value.slice(0, 3)}-${value.slice(3, 6)}-${value.slice(6, 10)}`;
+            e.target.value = value;
+        });
+    </script>
+</section>
+
+{% endblock %}
