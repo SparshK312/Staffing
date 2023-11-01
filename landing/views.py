@@ -5,7 +5,6 @@ from .models import Waitlist
 import requests
 import json
 from django.views.decorators.csrf import csrf_exempt
-from datetime import datetime
 
 
 def index(request):
@@ -37,36 +36,27 @@ def join_waitlist(request):
 def calling_page(request):
     phone_number = request.session.get("phone_number", "")
     print(f"Retrieved phone_number from session: {phone_number}")
+    # Optional: delete the phone number from the session after retrieving it
+    if "phone_number" in request.session:
+        del request.session["phone_number"]
     return render(request, "landing/calling.html", {"phone_number": phone_number})
 
 
 def try_ai_agent_step2(request):
     print("try_ai_agent_step2 function called")  # <-- Check if this view function is called at all
-
-    # Initialize the trying_again flag to False
-    trying_again = False
-
     if request.method == "POST":
         print("Request method is POST")  # <-- Check if the method is POST
-
-        # Check if the Try Again button was pressed
-        if 'try_again' in request.POST:
-            trying_again = True
-            phone_number = request.session.get("phone_number")
-            email = Waitlist.objects.filter(phone_number=phone_number).values_list('email', flat=True).first()
-
         form = AIRequestStep2Form(request.POST)
-        if form.is_valid() or trying_again:
-            # If we're trying again, we don't need the email from the form
-            if not trying_again:
-                email = form.cleaned_data["email"]
-                phone_number = request.session["phone_number"]
-                entry = Waitlist(
-                    phone_number=phone_number,
-                    email=email,
-                    ai_request=True,
-                )
-                entry.save()
+        if form.is_valid():
+            email = form.cleaned_data["email"]
+            phone_number = request.session["phone_number"]
+
+            entry = Waitlist(
+                phone_number=phone_number,
+                email=email,
+                ai_request=True,
+            )
+            entry.save()
 
             print("About to make the API call")
 
@@ -88,7 +78,7 @@ def try_ai_agent_step2(request):
                 pass
 
             # Clear session data or further handle it
-            del request.session["phone_number"]
+            #del request.session["phone_number"]
             return redirect("landing:calling_page")
         else:
             print("Form is not valid")  # <-- See if form validation fails
@@ -97,8 +87,4 @@ def try_ai_agent_step2(request):
         print("Request method is NOT POST")
         form = AIRequestStep2Form()
 
-    return render(request, "landing/try_ai_agent_step2.html", {
-        "form": form, 
-        "trying_again": trying_again, 
-        "current_time": datetime.now().strftime("%H:%M:%S")
-    })
+    return render(request, "landing/try_ai_agent_step2.html", {"form": form})
