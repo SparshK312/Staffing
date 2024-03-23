@@ -24,16 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-p*$lkgh#2_s(vf+gj_p8a6q5^bxuuegus#jk&fo^^hqc!i=5=f"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =  os.environ.get("DEBUG_VALUE") == "True"
+#DEBUG = os.environ.get("DEBUG_VALUE") == "True"
+DEBUG = True
 
 ALLOWED_HOSTS = [
     ".vercel.app",
     ".now.sh",
     "127.0.0.1",
     "localhost",
-    "callfusion.io",
-    "www.callfusion.io",
-    "recruiterai.activatestaff.com",
 ]
 
 STATIC_URL = "/static/"
@@ -99,9 +97,9 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "railway",
         "USER": "postgres",
-        "PASSWORD": "mmLfsxoZAKJgXJiQ89oR",
-        "HOST": "containers-us-west-171.railway.app",
-        "PORT": "6510",
+        "PASSWORD": "*3A-ca2DdeAEgaeB52fAca4*2Dbf4dBd",
+        "HOST": "viaduct.proxy.rlwy.net",
+        "PORT": "27822",
     }
 }
 

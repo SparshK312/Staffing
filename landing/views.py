@@ -43,7 +43,10 @@ def calling_page(request):
 
 
 def try_ai_agent_step2(request):
-    print("try_ai_agent_step2 function called")  # <-- Check if this view function is called at all
+    print(
+        "try_ai_agent_step2 function called"
+    )  # <-- Check if this view function is called at all
+
     if request.method == "POST":
         print("Request method is POST")  # <-- Check if the method is POST
         form = AIRequestStep2Form(request.POST)
@@ -60,17 +63,20 @@ def try_ai_agent_step2(request):
 
             print("About to make the API call")
 
-            # Make an API call
-            response = requests.post(
-                "https://callfusion-0c6c4ca2c8e6.herokuapp.com/dispatch_demo_call",
-                json={
-                    "is_joy" : True,
-                    "phone_number": phone_number,
-                    "prospect_details": {
-                        "email": email,
-                    }
-                }
+            # Prepare the JSON data for the API call
+            api_data = {
+                "agent_to_use": "joiy",
+                "phone_number": phone_number,
+                "prospect_details": {
+                    "email": form.cleaned_data["email"],
+                },
+            }
+
+            # Make the API call
+            api_endpoint = (
+                "https://callfusion-0c6c4ca2c8e6.herokuapp.com/dispatch_demo_call"
             )
+            response = requests.post(api_endpoint, json=api_data)
 
             # Optional: Check if the API call was successful
             if response.status_code != 200:
@@ -78,7 +84,7 @@ def try_ai_agent_step2(request):
                 pass
 
             # Clear session data or further handle it
-            #del request.session["phone_number"]
+            # del request.session["phone_number"]
             return redirect("landing:calling_page")
         else:
             print("Form is not valid")  # <-- See if form validation fails
