@@ -54,28 +54,21 @@ def try_ai_agent_step2(request):
             email = form.cleaned_data["email"]
             phone_number = request.session["phone_number"]
 
-            entry = Waitlist(
-                phone_number=phone_number,
-                email=email,
-                ai_request=True,
-            )
-            entry.save()
-
             print("About to make the API call")
 
             # Prepare the JSON data for the API call
             api_data = {
-                "agent_to_use": "joiy",
                 "phone_number": phone_number,
                 "prospect_details": {
-                    "email": form.cleaned_data["email"],
-                },
+                    "name": "",
+                    "email": form.cleaned_data['email'],
+                    "company": "",
+                }, 
+                "agent_to_use": "joiy",
             }
 
             # Make the API call
-            api_endpoint = (
-                "https://callfusion-0c6c4ca2c8e6.herokuapp.com/dispatch_demo_call"
-            )
+            api_endpoint = "https://callfusion-0c6c4ca2c8e6.herokuapp.com/dispatch_demo_call"
             response = requests.post(api_endpoint, json=api_data)
 
             # Optional: Check if the API call was successful

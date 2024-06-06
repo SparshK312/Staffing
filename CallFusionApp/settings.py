@@ -32,6 +32,8 @@ ALLOWED_HOSTS = [
     ".now.sh",
     "127.0.0.1",
     "localhost",
+    "voiceai.activatestaff.com",
+    "www.voiceai.activatestaff.com",
 ]
 
 STATIC_URL = "/static/"
@@ -97,9 +99,9 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "railway",
         "USER": "postgres",
-        "PASSWORD": "*3A-ca2DdeAEgaeB52fAca4*2Dbf4dBd",
-        "HOST": "viaduct.proxy.rlwy.net",
-        "PORT": "27822",
+        "PASSWORD": "2GAGfC2CcG4d6g6gg3bDc4G5fBa3B3Gf",
+        "HOST": "monorail.proxy.rlwy.net",
+        "PORT": "19761",
     }
 }
 
