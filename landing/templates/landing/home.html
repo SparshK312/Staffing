@@ -16,7 +16,7 @@
 
             <!-- Subtitle --> 
             <p class="text-base lg:text-lg text-black mb-16 max-w-lg mx-auto">
-                She'll call you about a job and see if you're a good fit. Feel free to ask questions and answer in ways that you think 80% of your candidates would.
+                She'll call you about the following job and see if you're a good fit. Feel free to ask questions and answer in ways that you think 80% of your candidates would.
             </p>
 
             <!-- Phone Number Form -->
@@ -40,9 +40,49 @@
                     Me Now
                 </button>
             </form>
+
+            <!-- Job Description Dropdown -->
+            <div class="mt-8 w-full max-w-lg mx-auto">
+                <button onclick="toggleDropdown()" class="w-full py-4 px-10 text-xl font-semibold bg-gray-200 text-black rounded-xl hover:bg-gray-300 transition-transform duration-300 shadow-md transform hover:scale-105 border border-gray-400 hover:border-gray-500">Read More About Job Description</button>
+                <div id="jobDescription" class="mt-4 p-6 bg-gray-100 text-left text-black rounded-md shadow-xl hidden">
+                    <h3 class="text-2xl font-bold mb-4">Job Description</h3>
+                    <p><strong>Title:</strong> Warehouse Clerk</p>
+                    <p><strong>Shift:</strong> Monday through Friday, from 7 A.M to 3 P.M. This is a temporary-to-hire role</p>
+                    <p><strong>Location:</strong> Goodyear in Arizona</p>
+                    <p><strong>Pay Rate:</strong> $21.25 per hour</p>
+                    <p><strong>Benefits upon hire:</strong> Medical, dental, vision, 401k, paid time off.</p>
+                    <p><strong>Facility:</strong> XYZ Logistics, a large logistics company specializing in Aerospace Parts Distribution.</p>
+                    
+                    <h3 class="text-2xl font-bold mt-6 mb-4">Qualifying Questions</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li class="text-lg">How many years of experience do you have with data entry?
+                                <p class="text-sm text-gray-600"><em>Requirement: The ideal candidate has two years of experience with data entry.</em></p>
+                            </li>
+                            <li class="text-lg">How much experience do you have with inventory experience in a warehouse environment?
+                                <p class="text-sm text-gray-600"><em>Requirement: The ideal candidate has one year of experience with this.</em></p>
+                            </li>
+                            <li class="text-lg">How much experience do you have with the Microsoft Office Suite, especially Excel?
+                                <p class="text-sm text-gray-600"><em>Requirement: The candidate must be proficient with Excel.</em></p>
+                            </li>
+                            <li class="text-lg">Are you ok with the 8-hour shifts starting at 7 AM for 40 hours per week?</li>
+                            <li class="text-lg">The location is in Goodyear, Arizona. Are there any concerns?</li>
+                        </ul>
+                    
+                </div>
+            </div>
+
         </div>
     </div>
     <script>
+        function toggleDropdown() {
+            var element = document.getElementById('jobDescription');
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+            } else {
+                element.classList.add('hidden');
+            }
+        }
+
         document.getElementById('phone_number').addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, ''); // remove all non-digits
             if (value.length > 3 && value.length <= 6)
