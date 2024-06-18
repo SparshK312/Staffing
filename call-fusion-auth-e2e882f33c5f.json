@@ -1,0 +1,15 @@
+{
+  "type": "service_account",
+  "project_id": "call-fusion-auth",
+  "private_key_id": "e2e882f33c5f7d2b02e4141ef87e2bb5001c3c9d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDYCads/gU05zIu\n3j7n0r0jKrRY6sXQmbIiyaV5De4VqkBij7kteWGLwiIV8pYNg3iQvM98+VDOH4j3\n8Col8V/oNPfi1Lmn43vNpBCWXPLBQ12OFdentBwT1oYAXzkDJUkPnB12ZS8Ul694\nKZjLqMuwaTwJJTUXrtDG8QnaO4QYOq3EfWAUFhXllZ7xcOfTcrfRG8zWNjjOMKiN\nVwBo/C8Ij+ZzUraOMO9DU2WieukTHrEKw0a7QxMjd82Czd/TzIEUKNXBk/cE4gV+\nLUHEAvzkpo643rCzL2cGBMeC//wrjubxwgRddIig9ZjsovQ7MzGS4wWlTVxeFJKn\nP09Qw0DjAgMBAAECggEAa+I6TUf3IqmX2mba5BrNn9uqD0NCgL7YAd5P94lYzVHl\ncDLUpxxX9Zp/OhWYEGyIj0LynLbGPwDpfeNdsO/+VG/rIEfZ5LjJsPJO5D/LbG6v\nMA7BUHq1kMSOy23CA0uh1h1Aa0jxP2fWVPv01TNYcKLEu85sWoTOtqJVKLmS6COt\n4SWTF7AbEsJiEHMOr02yVeE4u+0CfWOM6Fd0sjjmQpLz3JG02baNo40Nle00qnF4\nA1lE5kcYGHF7Bk+DwFd5AAgxX9OTyCFbqUINidY6U4+dTonB0h/XF/bztWWF0J9C\nagtRNmKaBAUT8hEKW14NjmA32k/wdP3I51JiCF8PLQKBgQD+Deljqb/cQFtlMbdg\nbtakElLW5lrYU3KFybrNrfdW1orQHBsmqIpxs+DOZus4ao3heNxU9AhB/KaZWwUO\nkawEMjEm5ErDWr9EnL7XokfDIpMSAxmAV5TYt8LKVvPBiqwIRxmgR4fcWczOFsJd\nsIPXcmgd5HPoDWQHetoxmZzHLwKBgQDZsTVhAKNiiW+E9tu68jMdQaRAGAaZUu51\ndf3pkoPWaYI4D9fXxY2G9TZn6qGAG+gJQYTyRksIiUQzmwcz353e3vZYoPY2MIT+\nYaiO75jUjHmlTE6xJZckykMiMBAJaQYLuU6QJnZHA+BQ+Qe9FRBQ9bjT44DVvKc4\nbwCeNUw0jQKBgHnPs8rsdiil1uyTROiA3Ht4qa2Ob5pvkGajjeTWd9R0M8SK5V3I\ny/Cunah5Ymj/dh3YtFQrWdZBzKOVJ7yPjhnI8xZBubMnTLQaL8r2bVAbwMaPI+gM\nljq/CS+5N1DiK5AgfyIBihvWFsPt163SV7Syj0dd5VErMn3/oqTLkYdTAoGBALge\nv60JoycGYwIs4G/fxgeqq0diisJHeFR0tYtGVqeUmYTdMYvYFPnekGOX+XynHbwm\nZFGdznyrzLlxF8hyC86i+ezARz5SD0owQyaR08uB/KkoPy5pQsrlH57c09OBtpFX\n6/DT9xndV25lEnyEQkaXbfoY47DjXPPIPteQ8KFJAoGASCoTNH5Yxg2Ha43EssMG\n9FIV4kU14hwOUoZhRWQvFbDkHXTcg98dWtee1aLfEL5B/umVHWr6TdSg3NPYK4eG\nZmTo83GKy5JONIhPjz6dqTzxscU2Lxr2H85SNOKOyReK9Mtok9gHAvsvzbSfubyv\nsGH7D4426EBJlt3qM73lM8M=\n-----END PRIVATE KEY-----\n",
+  "client_email": "call-fusion-database@call-fusion-auth.iam.gserviceaccount.com",
+  "client_id": "111126632066030336400",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/call-fusion-database%40call-fusion-auth.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
+
+

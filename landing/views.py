@@ -5,7 +5,36 @@ from .models import Waitlist
 import requests
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import datetime 
+import os
+import pytz
+from pytz import timezone
+from django.utils import timezone as django_timezone
+from datetime import timedelta
+from django.utils import timezone
+from .models import DemoUsage
 
+
+# Function to initialize Google Sheets client
+def init_gsheets_client():
+    scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
+             "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
+
+    # Try to get credentials from environment variable
+    creds_json = os.getenv('GOOGLE_SHEETS_CREDS')
+    if creds_json: 
+        creds_dict = json.loads(creds_json)
+        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+    else:
+        # Fallback to using a file if environment variable is not set (useful for local development)
+        creds_file_path = r'C:\Users\spars\OneDrive\Desktop\Staffing Website\call-fusion-auth-e2e882f33c5f.json'
+        creds = ServiceAccountCredentials.from_json_keyfile_name(creds_file_path, scope)
+
+    client = gspread.authorize(creds)
+    return client
 
 def index(request):
     if request.method == "POST":
@@ -71,16 +100,42 @@ def try_ai_agent_step2(request):
             api_endpoint = "https://callfusion-0c6c4ca2c8e6.herokuapp.com/dispatch_demo_call"
             response = requests.post(api_endpoint, json=api_data)
 
-            # Optional: Check if the API call was successful
-            if response.status_code != 200:
-                # Handle error, maybe log it or notify admins
-                pass
+            # Check if the API call was successful
+            if response.status_code == 200:
+                # Log usage
+                DemoUsage.objects.create(phone_number=phone_number)
 
-            # Clear session data or further handle it
-            # del request.session["phone_number"]
-            return redirect("landing:calling_page")
+                # Save the details in the database
+                entry = Waitlist.objects.create(**form.cleaned_data, phone_number=phone_number, ai_request=True)
+                print("Saved Entry Company Name:", entry.company_name)
+
+                # Set timezone to EST
+                est = pytz.timezone('America/New_York')
+                current_datetime = timezone.now().astimezone(est)
+
+                date_str = current_datetime.strftime("%B %dth, %Y")  # e.g., "November 16th, 2023"
+                time_str = current_datetime.strftime("%I:%M:%S %p")  # e.g., "10:53:32 PM"
+
+                # Prepare the row data
+                row_data = [
+                entry.email,
+                entry.phone_number,
+                date_str,
+                time_str
+                ]
+
+                # If successful, append data to Google Sheet
+                client = init_gsheets_client()
+                sheet = client.open("Landing Page Database").worksheet("ActivateStaff")
+                sheet.append_row(row_data)
+
+                return redirect("landing:calling_page")
+            else:
+                # If the call was not successful, show an error
+                print(f"API call failed: {response.text}")
+                return render(request, "landing/error.html", {"message": "There was an error with the AI agent call."})
         else:
-            print("Form is not valid")  # <-- See if form validation fails
+            print("Form is not valid")
             print(form.errors)
     else:
         print("Request method is NOT POST")
