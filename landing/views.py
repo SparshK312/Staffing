@@ -25,12 +25,13 @@ def init_gsheets_client():
 
     # Try to get credentials from environment variable
     creds_json = os.getenv('GOOGLE_SHEETS_CREDS')
-    if creds_json: 
+    if creds_json:
+        print("The google creds were found")  
         creds_dict = json.loads(creds_json)
         creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     else:
-        # Fallback to using a file if environment variable is not set (useful for local development)
-        creds_file_path = r'C:\Users\spars\OneDrive\Desktop\Staffing Website\call-fusion-auth-e2e882f33c5f.json'
+        # Fallback to using a file if environment variable is not set (for local development)
+        creds_file_path = os.path.join(os.path.dirname(__file__), 'call-fusion-auth-e2e882f33c5f.json')
         creds = ServiceAccountCredentials.from_json_keyfile_name(creds_file_path, scope)
 
     client = gspread.authorize(creds)
