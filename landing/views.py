@@ -98,7 +98,7 @@ def try_ai_agent_step2(request):
             }
 
             # Make the API call
-            api_endpoint = "https://callfusion-0c6c4ca2c8e6.herokuapp.com/dispatch_demo_call"
+            api_endpoint = "https://dispatcher.callfusion-bcknd-1630.com//dispatch_demo_call"
             response = requests.post(api_endpoint, json=api_data)
 
             # Check if the API call was successful
