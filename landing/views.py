@@ -16,6 +16,7 @@ from django.utils import timezone as django_timezone
 from datetime import timedelta
 from django.utils import timezone
 from .models import DemoUsage
+from requests.auth import HTTPBasicAuth
 
 
 # Function to initialize Google Sheets client
@@ -30,8 +31,14 @@ def init_gsheets_client():
         creds_dict = json.loads(creds_json)
         creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     else:
-        # Fallback to using a file if environment variable is not set (for local development)
-        creds_file_path = os.path.join(os.path.dirname(__file__), 'call-fusion-auth-e2e882f33c5f.json')
+        # Fallback to using a local file for credentials
+        print("Environment variable not set, using local JSON file for credentials.")
+        # Define the path to the local JSON credentials file
+        creds_file_path = r'C:\Users\spars\OneDrive\Desktop\Staffing Website\call-fusion-auth-e2e882f33c5f.json'
+        # Ensure the file exists
+        if not os.path.exists(creds_file_path):
+            raise FileNotFoundError(f"Credentials file not found at path: {creds_file_path}")
+        # Create credentials from the JSON file
         creds = ServiceAccountCredentials.from_json_keyfile_name(creds_file_path, scope)
 
     client = gspread.authorize(creds)
@@ -86,20 +93,8 @@ def try_ai_agent_step2(request):
 
             print("About to make the API call")
 
-            # Prepare the JSON data for the API call
-            api_data = {
-                "phone_number": phone_number,
-                "prospect_details": {
-                    "name": "",
-                    "email": form.cleaned_data['email'],
-                    "company": "",
-                }, 
-                "agent_to_use": "joiy",
-            }
-
             # Make the API call
-            api_endpoint = "https://dispatcher.callfusion-bcknd-1630.com//dispatch_demo_call"
-            response = requests.post(api_endpoint, json=api_data)
+            response = requests.post("https://dispatcher.callfusion-bcknd-1630.com/dispatch_live_agent", json = {"prospect_phone_number" : phone_number, "agent_id" : "joiy", "additional_args" : {"prospect_name" : ""}}, auth = HTTPBasicAuth("callfusionadmin", "callfusiontothemoon123")) 
 
             # Check if the API call was successful
             if response.status_code == 200:
